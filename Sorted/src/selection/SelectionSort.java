@@ -6,6 +6,7 @@ public class SelectionSort {
     public static void main(String[] args) {
         Integer[] arr = generateArray(100, 0, 100);
         selectionSort(arr);
+        assert isSorted(arr);
         print(arr);
     }
 

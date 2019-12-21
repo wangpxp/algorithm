@@ -6,7 +6,7 @@ public class SortTestHelper {
 
     //生成一个随机的整数数组
     public static Integer[] generateArray(int n, int rangeL, int rangeR) {
-        assert(rangeL <= rangeR);
+        assert rangeL <= rangeR;
         Integer[] arr = new Integer[n];
         Random rand = new Random();
         for (int i = 0; i < n; i++) {
@@ -31,5 +31,13 @@ public class SortTestHelper {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+    public static <T extends Comparable> boolean isSorted(T[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            if (less(arr[i], arr[i - 1])) return false;
+        }
+        return true;
+    }
+
 
 }
