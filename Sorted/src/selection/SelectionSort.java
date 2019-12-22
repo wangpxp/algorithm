@@ -1,13 +1,20 @@
 package selection;
 
+import util.Student;
+
 import static util.SortTestHelper.*;
 
 public class SelectionSort {
     public static void main(String[] args) {
         Integer[] arr = generateArray(100, 0, 100);
-        selectionSort(arr);
-        assert isSorted(arr);
-        print(arr);
+
+        Student s1 = new Student("AA", 99);
+        Student s2 = new Student("BB", 98);
+
+        Student[] stuList = new Student[]{s1, s2};
+        selectionSort(stuList);
+        assert isSorted(stuList);
+        print(stuList);
     }
 
 
