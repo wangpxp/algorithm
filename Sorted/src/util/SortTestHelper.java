@@ -22,16 +22,19 @@ public class SortTestHelper {
         }
     }
 
+    // 小于
     public static <T extends Comparable> boolean less(T v, T w) {
         return v.compareTo(w) < 0;
     }
 
+    // 交换
     public static <T> void swap(T[] arr, int i, int j) {
         T temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
+    // 是否排序成功
     public static <T extends Comparable> boolean isSorted(T[] arr) {
         for (int i = 1; i < arr.length; i++) {
             if (less(arr[i], arr[i - 1])) return false;
