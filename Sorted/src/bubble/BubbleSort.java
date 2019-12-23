@@ -13,7 +13,7 @@ import static util.SortTestHelper.*;
 public class BubbleSort {
 
     //第一种冒泡排序
-    private static void bubbleSort(Integer[] arr) {
+    private static void bubbleSort_1(Integer[] arr) {
         for (int i = 0; i < arr.length; i++) {
             //print(arr);
             for (int j = i; j < arr.length; j++) {
@@ -23,12 +23,13 @@ public class BubbleSort {
         }
     }
 
-    private static void bubbleSort_1(Integer[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+
+    private static void bubbleSort_2(Integer[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
             //print(arr);
-            for (int j = 0, k = 1; j < arr.length - 1; j++, k++) {
-                if (less(arr[k], arr[j]))
-                    swap(arr, j, k);
+            for (int j = i; j < arr.length - 1; j++) {
+                if(less(arr[j + 1], arr[j]))
+                    swap(arr, j, j + 1);
             }
         }
     }
@@ -41,15 +42,16 @@ public class BubbleSort {
         Student[] stuList = new Student[]{s1, s2};
 
         long startTime1 =  System.currentTimeMillis();
-        bubbleSort(arr);
+        bubbleSort_1(arr);
         long endTime1 =  System.currentTimeMillis();
         long usedTime1 = (endTime1-startTime1);
-        System.out.println();
 
         long startTime2 =  System.currentTimeMillis();
-        bubbleSort_1(arr);
+        bubbleSort_2(arr);
         long endTime2 =  System.currentTimeMillis();
         long usedTime2 = (endTime2-startTime2);
+
+
         System.out.println(usedTime1);
         System.out.println(usedTime2);
         assert isSorted(arr);
