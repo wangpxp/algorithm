@@ -33,6 +33,15 @@ public class BubbleSort {
         }
     }
 
+/*    private static void bubbleSort_1(Integer[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = arr.length - 1; j > i; j--) {
+                if(less(arr[j], arr[j - 1]))
+                    swap(arr, j, j - 1);
+            }
+        }
+    }*/
+
     // 优化的冒泡排序
     // 由于冒泡排序每一次都会交换数据，当有一轮没有交换数据时，说明已经排好序，不需要再继续循环了。
     // 优化的是外层循环
