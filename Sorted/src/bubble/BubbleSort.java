@@ -12,10 +12,9 @@ import static util.SortTestHelper.*;
  */
 public class BubbleSort {
 
-    //第一种冒泡排序
-    private static void bubbleSort_1(Integer[] arr) {
+    //基于比较的选择排序（很多无意义的交换，不推荐使用）
+    private static void selectionSort(Integer[] arr) {
         for (int i = 0; i < arr.length; i++) {
-            //print(arr);
             for (int j = i; j < arr.length; j++) {
                 if (less(arr[j], arr[i]))
                     swap(arr, i, j);
@@ -24,38 +23,43 @@ public class BubbleSort {
     }
 
 
-    private static void bubbleSort_2(Integer[] arr) {
+    //未优化冒泡排序
+    private static void bubbleSort_1(Integer[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
-            //print(arr);
-            for (int j = i; j < arr.length - 1; j++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
                 if(less(arr[j + 1], arr[j]))
                     swap(arr, j, j + 1);
             }
         }
     }
 
+    // 优化的冒泡排序
+    // 由于冒泡排序每一次都会交换数据，当有一轮没有交换数据时，说明已经排好序，不需要再继续循环了。
+    // 优化的是外层循环
+    private static void bubbleSort_2(Integer[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            boolean flag = false;
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if(less(arr[j + 1], arr[j])) {
+                    swap(arr, j, j + 1);
+                    flag = true;
+                }
+            }
+            if(flag == false) break;
+        }
+    }
+
     public static void main(String[] args) {
-        Integer[] arr = generateArray(20000, 0, 10000);
+        Integer[] arr = generateArray(10, 0, 100);
         Student s1 = new Student("AA", 99);
         Student s2 = new Student("BB", 98);
 
         Student[] stuList = new Student[]{s1, s2};
 
-        long startTime1 =  System.currentTimeMillis();
-        bubbleSort_1(arr);
-        long endTime1 =  System.currentTimeMillis();
-        long usedTime1 = (endTime1-startTime1);
-
-        long startTime2 =  System.currentTimeMillis();
+        //bubbleSort_1(arr);
         bubbleSort_2(arr);
-        long endTime2 =  System.currentTimeMillis();
-        long usedTime2 = (endTime2-startTime2);
-
-
-        System.out.println(usedTime1);
-        System.out.println(usedTime2);
         assert isSorted(arr);
-        //print(arr);
+        print(arr);
     }
 
 }
