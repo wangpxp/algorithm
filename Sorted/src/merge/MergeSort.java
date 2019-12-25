@@ -75,6 +75,17 @@ public class MergeSort<T> {
             merge(arr, lo, mid, hi); //原地归并，即借助三个指针将arr看作很多小数组，对这些小数组实现相同的归并操作
     }
 
+    // 自底向上的归并排序，使用的是循环，可以对链表使用
+    private static void mergeSortBU(Comparable[] arr) {
+        int n = arr.length;
+        aux = new Comparable[n];
+        for (int sz = 1; sz < n; sz += sz) { // 每次归并的大小
+            for (int i = 0; i + sz < n; i += sz + sz) { //每次对两倍sz大小归并
+                merge(arr, i, i + sz - 1, Math.min(i + sz + sz - 1, n - 1));
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Integer[] arr = generateArray(100, 0, 100);
 
@@ -82,7 +93,7 @@ public class MergeSort<T> {
         Student s2 = new Student("BB", 98);
 
         Student[] stuList = new Student[]{s1, s2};
-        mergeSort(arr);
+        mergeSortBU(arr);
         assert isSorted(arr);
         print(arr);
     }
