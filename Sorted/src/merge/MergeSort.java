@@ -3,6 +3,7 @@ package merge;
 import util.SortTestHelper;
 import util.Student;
 
+import static insertion.InsertionSort.insertionSort;
 import static util.SortTestHelper.*;
 
 /**
@@ -60,11 +61,18 @@ public class MergeSort<T> {
     }
 
     private static void mergeSort(Comparable[] arr, int lo, int hi) {
-        if (lo >= hi) return; // 递归终止条件
+        //if (lo >= hi) return; // 递归终止条件
+
+        if (hi - lo <= 15) { //归并排序优化，在数据量小的时候用插入排序
+            insertionSort(arr, lo, hi);
+            return;
+        }
+
         int mid = lo + (hi - lo) / 2;
         mergeSort(arr, lo, mid);
         mergeSort(arr, mid + 1, hi); //将数组二分
-        merge(arr, lo, mid, hi); //原地归并，即借助三个指针将arr看作很多小数组，对这些小数组实现相同的归并操作
+        if (less(arr[mid + 1], arr[mid])) // 归并排序的近乎有序数组的优化，仅当arr[mid]>arr[mid+1]才进行归并
+            merge(arr, lo, mid, hi); //原地归并，即借助三个指针将arr看作很多小数组，对这些小数组实现相同的归并操作
     }
 
     public static void main(String[] args) {

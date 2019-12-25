@@ -54,6 +54,17 @@ public class InsertionSort {
         }
     }
 
+    public static void insertionSort(Comparable[] arr, int lo, int hi) {
+        for (int i = lo + 1; i <= hi; i++) {
+            Comparable e = arr[i];
+            int j;
+            for (j = i; j > 0 && less(e, arr[j - 1]); j--) {
+                arr[j] = arr[j - 1];
+            }
+            arr[j] = e;
+        }
+    }
+
     public static void main(String[] args) {
         Integer[] arr = generateArray(100, 0, 100);
 
