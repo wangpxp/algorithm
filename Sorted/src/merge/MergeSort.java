@@ -1,6 +1,5 @@
 package merge;
 
-import util.SortTestHelper;
 import util.Student;
 
 import static insertion.InsertionSort.insertionSort;
