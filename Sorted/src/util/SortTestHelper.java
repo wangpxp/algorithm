@@ -16,7 +16,7 @@ public class SortTestHelper {
     }
 
     //可以打印所有类型的数组
-    public static <T> void print(T[] arr) {
+    public static  void print(Comparable[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
@@ -24,19 +24,19 @@ public class SortTestHelper {
     }
 
     // 小于
-    public static <T extends Comparable> boolean less(T v, T w) {
+    public static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
     }
 
     // 交换
-    public static <T> void swap(T[] arr, int i, int j) {
-        T temp = arr[i];
+    public static  void swap(Comparable[] arr, int i, int j) {
+        Comparable temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
     // 是否排序成功
-    public static <T extends Comparable> boolean isSorted(T[] arr) {
+    public static boolean isSorted(Comparable[] arr) {
         for (int i = 1; i < arr.length; i++) {
             if (less(arr[i], arr[i - 1])) return false;
         }

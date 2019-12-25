@@ -13,7 +13,7 @@ import static util.SortTestHelper.*;
 public class BubbleSort {
 
     //基于比较的选择排序（很多无意义的交换，不推荐使用）
-    private static void selectionSort(Integer[] arr) {
+    private static void selectionSort(Comparable[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
                 if (less(arr[j], arr[i]))
@@ -24,7 +24,7 @@ public class BubbleSort {
 
 
     //未优化冒泡排序
-    private static void bubbleSort_1(Integer[] arr) {
+    private static void bubbleSort_1(Comparable[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
                 if(less(arr[j + 1], arr[j]))
@@ -33,7 +33,7 @@ public class BubbleSort {
         }
     }
 
-/*    private static void bubbleSort_1(Integer[] arr) {
+/*    private static void bubbleSort_1(Comparable[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = arr.length - 1; j > i; j--) {
                 if(less(arr[j], arr[j - 1]))
@@ -45,7 +45,7 @@ public class BubbleSort {
     // 优化的冒泡排序
     // 由于冒泡排序每一次都会交换数据，当有一轮没有交换数据时，说明已经排好序，不需要再继续循环了。
     // 优化的是外层循环
-    private static void bubbleSort_2(Integer[] arr) {
+    private static void bubbleSort_2(Comparable[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             boolean flag = false;
             for (int j = 0; j < arr.length - i - 1; j++) {

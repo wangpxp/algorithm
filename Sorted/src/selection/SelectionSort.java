@@ -15,7 +15,7 @@ import static util.SortTestHelper.*;
  */
 public class SelectionSort {
 
-    private static<T extends Comparable> void selectionSort(T[] arr) {
+    private static void selectionSort(Comparable[] arr) {
         for (int i = 0; i < arr.length; i++) {
             int minIndex = i;
             for (int j = i + 1; j < arr.length; j++) {  //找到i后面最小的数
