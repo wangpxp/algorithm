@@ -2,6 +2,8 @@ package quick;
 
 import util.Student;
 
+import java.util.Random;
+
 import static util.SortTestHelper.*;
 
 /**
@@ -9,7 +11,7 @@ import static util.SortTestHelper.*;
  * 算法思想：选取一个基准点（通常是第一个），让它前面的元素都小于它，它后面的元素都大于它
  * 然后分别再对这两个部分进行插入排序
  * 杂乱无章的情况下速度最快的排序
- * 时间复杂度O(NlogN)
+ * 时间复杂度O(NlogN)，最差O(n^2)
  */
 public class QuickSort {
 
@@ -27,7 +29,9 @@ public class QuickSort {
 
     // 返回p,使得arr[l...p-1]<arr[p],arr[p+1...r]>arr[p]
     private static int partition(Comparable[] arr, int l, int r) {
-        Comparable v = arr[l]; // 通常选取数组第一个值作为基准点
+        Random random = new Random();
+        swap(arr, l, random.nextInt(r - l + 1) + l);
+        Comparable v = arr[l]; // 通常选取数组第一个值作为基准点,但是如果数组近乎有序，效率会退化到O(N^2)
 
         //对后面的数组遍历一遍
         // arr[l+1...j]<v,arr[j+1...i)>v
