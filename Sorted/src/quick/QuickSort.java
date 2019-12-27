@@ -28,6 +28,47 @@ public class QuickSort {
         quickSort(arr, p + 1, r);
     }
 
+    // 三路快排，在小于v的末尾加入lt,考虑等于v的情况
+    // arr[l+1,lt]<v, arr[lt+1, i)=v,arr[gt,r]>v
+    // 由于要返回两个值，所以写在一个函数里
+    private static void quickSort3Ways(Comparable[] arr) {
+        quickSort3Ways_2(arr, 0, arr.length - 1);
+    }
+
+    private static void quickSort3Ways(Comparable[] arr, int l, int r) {
+        if (l >= r) return;
+        swap(arr, l, random.nextInt(r - l + 1) + l);
+        Comparable v = arr[l];
+        int lt = l; //arr[l+1...lt]<v 初始为空
+        int gt = r + 1; //arr[gt...r]>v 初始为空
+        int i = l + 1; // arr[l+1...i)=v 初始为空
+        while (i < gt) {
+            if (less(arr[i], v)) swap(arr, ++lt, i++);
+            else if (less(v, arr[i])) swap(arr, --gt, i);
+            else i++;
+        }
+        swap(arr, l, lt);
+        quickSort3Ways(arr, l,lt - 1);
+        quickSort3Ways(arr, gt, r);
+    }
+
+    //将第一个元素一视同仁，看作等于v的元素
+    private static void quickSort3Ways_2(Comparable[] arr, int l, int r) {
+        if (l >= r) return;
+        swap(arr, l, random.nextInt(r - l + 1) + l);
+        Comparable v = arr[l];
+        int lt = l; //arr[l+1...lt]<v 初始为空
+        int gt = r; //arr[gt...r]>v 初始为空
+        int i = l + 1; // arr[l+1...i)=v 初始为空
+        while (i <= gt) {
+            if (less(arr[i], v)) swap(arr, lt++, i++);
+            else if (less(v, arr[i])) swap(arr, gt--, i);
+            else i++;
+        }
+        quickSort3Ways_2(arr, l,lt - 1);
+        quickSort3Ways_2(arr, gt + 1, r);
+    }
+
     // 改进的partition算法，让数组前后两端同时进行工作，可以让有着大量重复元素下的排序更快
     // arr[l+1...i)<=v, arr(j...r]>=v
     private static int partition_2(Comparable[] arr, int l, int r) {
@@ -67,7 +108,7 @@ public class QuickSort {
         Student s2 = new Student("BB", 98);
 
         Student[] stuList = new Student[]{s1, s2};
-        quickSort(arr);
+        quickSort3Ways(arr);
         assert isSorted(arr);
         print(arr);
     }
