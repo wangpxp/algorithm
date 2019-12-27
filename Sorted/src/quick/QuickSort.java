@@ -76,7 +76,7 @@ public class QuickSort {
         Comparable v = arr[l];
         int i = l + 1, j = r;
         while (true) {
-            while (i <= r && less(arr[i], v)) i++; //i<=r可以省略，j>l也是
+            while (i <= r && less(arr[i], v)) i++;
             while (j > l && less(v, arr[j])) j--;
             if (i >= j) break;
             swap(arr, i++, j--);
