@@ -30,6 +30,27 @@ public class BST <E extends Comparable<E>> {
     }
 
     public void add(E e) {
+        root = add(root, e);
+    }
+
+
+    // 返回插入元素后二分搜索树根方法的插入操作
+    private Node add(Node node, E e) {
+        if (node == null) {
+            size++;
+            return new Node(e);
+        }
+
+        if (e.compareTo(node.e) < 0) {
+            node.left = add(node, e);
+        } else if (e.compareTo(node.e) > 0) {
+            node.right = add(node, e);
+        }
+        return node;
+    }
+
+    // 逻辑比较直观的插入操作
+    public void addOld(E e) {
         if (root == null) {
             root = new Node(e);
             size++;
@@ -38,7 +59,7 @@ public class BST <E extends Comparable<E>> {
         }
     }
 
-    private void add(Node node, E e) {
+    private void addOld(Node node, E e) {
         if (e.equals(node)) return;
         else if (e.compareTo(node.e) < 0 && node.left == null) {
             node.left = new Node(e);
@@ -49,8 +70,8 @@ public class BST <E extends Comparable<E>> {
             size++;
             return;
         }
-        if (e.compareTo(node.e) < 0) add(node.left, e);
-        else if (e.compareTo(node.e) > 0) add(node.right, e);
+        if (e.compareTo(node.e) < 0) addOld(node.left, e);
+        else if (e.compareTo(node.e) > 0) addOld(node.right, e);
     }
 
 }
