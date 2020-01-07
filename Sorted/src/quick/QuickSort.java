@@ -59,7 +59,7 @@ public class QuickSort {
         Comparable v = arr[l];
         int lt = l; //arr[l...lt-1]<v 初始为空
         int gt = r; //arr[gt+1...r]>v 初始为空
-        int i = l + 1; // arr[lt...i)=v 初始为空
+        int i = l; // arr[lt...i)=v 初始为空
         while (i <= gt) {
             if (less(arr[i], v)) swap(arr, lt++, i++);
             else if (less(v, arr[i])) swap(arr, gt--, i);
