@@ -41,7 +41,7 @@ public class QuickSort {
         Comparable v = arr[l];
         int lt = l; //arr[l+1...lt]<v 初始为空
         int gt = r + 1; //arr[gt...r]>v 初始为空
-        int i = l + 1; // arr[l+1...i)=v 初始为空
+        int i = l + 1; // arr[lt+1...i)=v 初始为空
         while (i < gt) {
             if (less(arr[i], v)) swap(arr, ++lt, i++);
             else if (less(v, arr[i])) swap(arr, --gt, i);
@@ -57,9 +57,9 @@ public class QuickSort {
         if (l >= r) return;
         swap(arr, l, random.nextInt(r - l + 1) + l);
         Comparable v = arr[l];
-        int lt = l; //arr[l+1...lt]<v 初始为空
-        int gt = r; //arr[gt...r]>v 初始为空
-        int i = l + 1; // arr[l+1...i)=v 初始为空
+        int lt = l; //arr[l...lt-1]<v 初始为空
+        int gt = r; //arr[gt+1...r]>v 初始为空
+        int i = l + 1; // arr[lt...i)=v 初始为空
         while (i <= gt) {
             if (less(arr[i], v)) swap(arr, lt++, i++);
             else if (less(v, arr[i])) swap(arr, gt--, i);
