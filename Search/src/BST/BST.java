@@ -1,5 +1,7 @@
 package BST;
 
+import java.util.Stack;
+
 public class BST <E extends Comparable<E>> {
 
     private class Node {
@@ -116,6 +118,23 @@ public class BST <E extends Comparable<E>> {
         postOrder(node.left);
         postOrder(node.right);
         System.out.println(node.e);
+    }
+
+    public void preOrderNR() {
+        preOrderNR(root);
+    }
+
+    private void preOrderNR(Node root) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+            if (cur.right != null)
+                stack.push(cur.right);
+            if (cur.left != null)
+                stack.push(cur.left);
+        }
     }
 
     @Override

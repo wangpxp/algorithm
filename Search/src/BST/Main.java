@@ -11,6 +11,9 @@ public class Main {
         System.out.println();
 //        System.out.println(bst);
 
+        bst.preOrderNR();
+        System.out.println();
+
         bst.inOrder();
         System.out.println();
 
