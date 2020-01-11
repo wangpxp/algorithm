@@ -27,7 +27,6 @@ public class _220_ContainsDuplicateIII {
             Long ceil = set.ceiling((long) nums[i] - t);
             if (ceil != null && ceil <= (long) nums[i] + t)
                 return true;
-            // 是当前这个数与窗口内的数字比较，所以要先比较完再添加
             set.add((long) nums[i]);
             if (set.size() > k)
                 set.remove((long) nums[i - k]);

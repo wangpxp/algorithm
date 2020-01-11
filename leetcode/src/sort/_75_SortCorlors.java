@@ -54,10 +54,4 @@ public class _75_SortCorlors {
         nums[j] = temp;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {2, 0, 2, 1, 1, 0};
-        _75_SortCorlors corlors = new _75_SortCorlors();
-        corlors.sortColors(nums);
-    }
-
 }
