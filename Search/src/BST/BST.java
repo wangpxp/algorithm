@@ -1,5 +1,7 @@
 package BST;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BST <E extends Comparable<E>> {
@@ -134,6 +136,33 @@ public class BST <E extends Comparable<E>> {
                 stack.push(cur.right);
             if (cur.left != null)
                 stack.push(cur.left);
+        }
+    }
+
+    public void levelOrder() {
+        levelOrder(root);
+    }
+
+    private void levelOrder(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        Node last = root;
+        Node nlast =root;
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            System.out.print(cur.e + " ");
+            if (cur.left != null) {
+                queue.add(cur.left);
+                nlast = cur.left;
+            }
+            if (cur.right != null) {
+                queue.add(cur.right);
+                nlast = cur.right;
+            }
+            if (cur == last) { //如果当前节点是最右节点，换行
+                System.out.println();
+                last = nlast; //让last等于最右节点
+            }
         }
     }
 
